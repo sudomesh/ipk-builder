@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "My hovercraft is full of fnord!"

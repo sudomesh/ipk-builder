@@ -1,0 +1,33 @@
+{
+  "name": "ipk-builder",
+  "description": "Build IPK files for use with ipkg or opkg.",
+  "tags": [
+    "ipk",
+    "ipkg",
+    "opkg",
+    "dpkg",
+    "openwrt"
+  ],
+  "version": "0.0.1",
+  "author": {
+    "name": "Marc Juul",
+    "email": "ipk@juul.io"
+  },
+  "dependencies": {
+    "fs-extra": "~0.10.0"
+  },
+  "keywords": [
+    "ipk",
+    "ipkg",
+    "opkg",
+    "dpkg",
+    "openwrt"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sudomesh/ipkg-builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sudomesh/ipkg-builder/issues"
+  }
+}

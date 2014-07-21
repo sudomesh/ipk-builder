@@ -70,3 +70,9 @@ Alias for setMeta
 ## build(output_filepath) 
 
 Build the ipk file and write it to output_path.
+
+# License
+
+Licensed under GPLv3.
+
+Copyright 2014 Marc Juul

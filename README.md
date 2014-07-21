@@ -8,7 +8,7 @@ This library assumes a *nix system with tar, gzip and fakeroot installed. These 
 
     var IPKBuilder = require('ipk-builder');
     var builder = IPKBuilder();
-    builder.setBasePath('./foo');
+    builder.setBasePath('./foo'); // file paths in ipk will be relative to the base path
     builder.addFiles('./foo/bin', './foo/var');
     builder.addConfFiles('./foo/etc/foo.conf');
     builder.setMeta({  
@@ -22,6 +22,18 @@ This library assumes a *nix system with tar, gzip and fakeroot installed. These 
 
 # Functions
 
+## setBasePath(path)
+
+Set the base path. File paths in the ipk will be relative to this path. As an example, if you want to package the file
+
+    /home/fungi/myproject/usr/bin/foo
+
+such that the file "foo" appears in /usr/bin/foo when the package is installed, then the base path should be set to:
+
+    /home/fungi/myproject
+
+The base path can be changed between subsequent calls to addFiles/addConfFiles. If unset, the base path will default to the current working directory.
+
 ## addFiles(path_to_file_or_dir1, path_to_file_or_dir2, ...)
 
 Add files or directories to package. Note that configuration files should be added with addConfFiles instead.
@@ -29,8 +41,6 @@ Add files or directories to package. Note that configuration files should be add
 ## addConfFiles(path_to_file1, path_to_file2, ...)
 
 Add configuration files to package.
-
-## add 
 
 ## setMeta(obj)
 

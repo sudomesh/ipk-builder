@@ -11,6 +11,7 @@ This library assumes a *nix system with tar, gzip and fakeroot installed. These 
     builder.setBasePath('./foo'); // file paths in ipk will be relative to the base path
     builder.addFiles('./foo/bin', './foo/var');
     builder.addConfFiles('./foo/etc/foo.conf');
+    builder.addPostScripts('myscript.sh');
     builder.setMeta({  
       package: "foo",
       version: "0.1",
@@ -40,7 +41,11 @@ Add files or directories to package. Note that configuration files should be add
 
 ## addConfFiles(path_to_file1, path_to_file2, ...)
 
-Add configuration files to package.
+Add configuration files to package. You can also add configuration files using addFiles but the config files are treated differently e.g: When a package is upgraded and its configuration file has been modified by the user, the user is asked which version of the configuration file to use. 
+
+## addPostScripts(path_to_file1, path_to_file2, ...)
+
+Add scripts to be run at the end of the package installation. If multiple scripts are specified these will all be combined into a single post script.
 
 ## setMeta(obj)
 

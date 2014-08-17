@@ -30,7 +30,7 @@ var IPKBuilder = function(opts) {
         var i;
         for(i=0; i < arguments.length; i++) {
             if(!fs.existsSync(arguments[i])) {
-                if(opts.ignoreMissing) {
+                if(this.opts.ignoreMissing) {
                     continue;
                 } else {
                     throw arguments[i] + " does not exist";
@@ -56,7 +56,7 @@ var IPKBuilder = function(opts) {
         var i;
         for(i=0; i < arguments.length; i++) {
             if(!fs.existsSync(arguments[i])) {
-                if(opts.ignoreMissing) {
+                if(this.opts.ignoreMissing) {
                     continue;
                 } else {
                     throw arguments[i] + " does not exist";
@@ -76,7 +76,7 @@ var IPKBuilder = function(opts) {
         var i;
         for(i=0; i < arguments.length; i++) {
             if(!fs.existsSync(arguments[i])) {
-                if(opts.ignoreMissing) {
+                if(this.opts.ignoreMissing) {
                     continue;
                 } else {
                     throw arguments[i] + " does not exist";

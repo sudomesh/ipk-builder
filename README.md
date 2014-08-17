@@ -23,6 +23,14 @@ This library assumes a *nix system with tar, gzip and fakeroot installed. These 
 
 # Functions
 
+## IPKBuilder(opts)
+
+Creates an ipk builder object. Valid opts:
+
+```
+  ignoreMissing: Ignore missing files and directories if set to true (default: false).
+```
+
 ## setBasePath(path)
 
 Set the base path. File paths in the ipk will be relative to this path. As an example, if you want to package the file

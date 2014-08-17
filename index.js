@@ -6,8 +6,9 @@ var exec = require('child_process').exec;
 
 var fse = require('fs-extra');
 
-var IPKBuilder = function() {
+var IPKBuilder = function(opts) {
 
+    this.opts = opts || {};
     this.files = [];
     this.confFiles = [];
     this.postScripts = [];
@@ -28,6 +29,13 @@ var IPKBuilder = function() {
     this.addFiles = function() {
         var i;
         for(i=0; i < arguments.length; i++) {
+            if(!fs.existsSync(arguments[i])) {
+                if(opts.ignoreMissing) {
+                    continue;
+                } else {
+                    throw arguments[i] + " does not exist";
+                }
+            }
             var stat = fs.statSync(arguments[i]);
             if(stat.isFile()) {
                 this.files.push(this.resolve(arguments[i]));
@@ -47,6 +55,13 @@ var IPKBuilder = function() {
     this.addConfFiles = function() {
         var i;
         for(i=0; i < arguments.length; i++) {
+            if(!fs.existsSync(arguments[i])) {
+                if(opts.ignoreMissing) {
+                    continue;
+                } else {
+                    throw arguments[i] + " does not exist";
+                }
+            }
             var stat = fs.statSync(arguments[i]);
             if(stat.isFile()) {
                 this.confFiles.push(this.resolve(arguments[i]));
@@ -60,6 +75,13 @@ var IPKBuilder = function() {
     this.addPostScripts = function() {
         var i;
         for(i=0; i < arguments.length; i++) {
+            if(!fs.existsSync(arguments[i])) {
+                if(opts.ignoreMissing) {
+                    continue;
+                } else {
+                    throw arguments[i] + " does not exist";
+                }
+            }
             var stat = fs.statSync(arguments[i]);
             if(stat.isFile()) {
                 this.postScripts.push(path.resolve(arguments[i]));

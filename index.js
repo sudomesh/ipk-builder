@@ -248,6 +248,6 @@ var IPKBuilder = function(opts) {
     };
 };
 
-module.exports = function() {
-    return new IPKBuilder();
+module.exports = function(opts) {
+    return new IPKBuilder(opts);
 };

@@ -86,7 +86,7 @@ var IPKBuilder = function(opts) {
             if(stat.isFile()) {
                 this.postScripts.push(path.resolve(arguments[i]));
             } else if(stat.isDirectory()) {
-                var files = this.readdirSync(arguments[i]);
+                var files = fs.readdirSync(arguments[i]);
                 var j;
                 for(j=0; j < files.length; j++) {
                     this.addPostScripts(path.join(arguments[i], files[j]));

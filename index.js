@@ -19,10 +19,11 @@ var IPKBuilder = function(opts) {
         this.basePath = path.resolve(dir);
     };
 
-    this.resolve = function(apath) {
+    this.resolve = function(apath, mode) {
         return {
             realPath: path.resolve(apath), // the path on the filesystem
-            packagePath: path.relative(this.basePath, apath) // the path in the ipk
+            packagePath: path.relative(this.basePath, apath), // the path in the ipk
+            mode: mode // the mode of the original file
         };
     };
 
@@ -38,7 +39,7 @@ var IPKBuilder = function(opts) {
             }
             var stat = fs.statSync(arguments[i]);
             if(stat.isFile()) {
-                this.files.push(this.resolve(arguments[i]));
+                this.files.push(this.resolve(arguments[i], stat.mode));
             } else if(stat.isDirectory()) {
                 var files = fs.readdirSync(arguments[i]);
                 var j;
@@ -139,7 +140,9 @@ var IPKBuilder = function(opts) {
         for(i=0; i < files.length; i++) {
             targetDir = path.join(dataDir, path.dirname(files[i].packagePath));
             fse.mkdirpSync(targetDir);
-            fse.copySync(files[i].realPath, path.join(targetDir, path.basename(files[i].realPath)))
+            var newPath = path.join(targetDir, path.basename(files[i].realPath));
+            fse.copySync(files[i].realPath, newPath);
+            fs.chmodSync(newPath, files[i].mode);
         }
 
         // create control dir

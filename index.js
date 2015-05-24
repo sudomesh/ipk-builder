@@ -140,9 +140,14 @@ var IPKBuilder = function(opts) {
         for(i=0; i < files.length; i++) {
             targetDir = path.join(dataDir, path.dirname(files[i].packagePath));
             fse.mkdirpSync(targetDir);
+            var stat = fs.statSync(path.dirname(files[i].realPath));
+            fs.chmodSync(targetDir, stat.mode);
+
             var newPath = path.join(targetDir, path.basename(files[i].realPath));
             fse.copySync(files[i].realPath, newPath);
             fs.chmodSync(newPath, files[i].mode);
+
+
         }
 
         // create control dir

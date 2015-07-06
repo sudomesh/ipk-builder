@@ -231,7 +231,7 @@ var IPKBuilder = function(opts) {
                     callback("Error writing ipk: " + stderr);
                     return;
                 }
-                exec("tar -czf " + outPath + " data.tar.gz control.tar.gz debian-binary", {
+                exec('tar -czf "' + outPath + '" data.tar.gz control.tar.gz debian-binary', {
                     cwd: stageDir
                 }, function(err, stdout, stderr) {
                     if(err) {

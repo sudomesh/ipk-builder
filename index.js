@@ -165,7 +165,7 @@ var IPKBuilder = function(opts) {
         if(confFilesList) {
             fs.writeFileSync(path.join(controlDir, 'conffiles'), confFilesList); 
         }
-        
+
         // sort post scripts
         this.postScripts.sort(function(a, b) {
             if(a > b) {
@@ -184,9 +184,11 @@ var IPKBuilder = function(opts) {
             postScript += fs.readFileSync(this.postScripts[i]) + "\n";
             postScript += "## END " + path.basename(this.postScripts[i]) + " ##\n";
         }
+
         if(postScript) {
             var postScriptPath = path.join(controlDir, 'postinst');
-            fs.writeFileSync(postScriptPath)
+
+            fs.writeFileSync(postScriptPath, postScript)
             fs.chmodSync(postScriptPath, '755');
         }
 

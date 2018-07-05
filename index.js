@@ -126,7 +126,7 @@ var IPKBuilder = function(opts) {
 
         do {
             stageDir = path.join('/tmp', 'ipkg-builder-' + Math.round(Math.random() * 100000000));
-        } while(fs.exists(stageDir));
+        } while(fs.existsSync(stageDir));
 
         fs.mkdirSync(stageDir);
 
